@@ -112,17 +112,19 @@
     </bean>
 
     <!-- Filter automatically generates default SP metadata -->
-    <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
-        <constructor-arg>
-            <bean class="org.springframework.security.saml.metadata.MetadataGenerator">
-                <property name="extendedMetadata">
-                    <bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
-                        <property name="idpDiscoveryEnabled" value="true"/>
-                    </bean>
-                </property>
-            </bean>
-        </constructor-arg>
-    </bean>
+<bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
+	<constructor-arg>
+		<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
+			<property name="entityId" value="urn:testdatapp:qapla:com"/>
+			<property name="extendedMetadata">
+				<bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
+					<property name="signMetadata" value="false"/>
+					<property name="idpDiscoveryEnabled" value="true"/>
+				</bean>
+			</property>
+		</bean>
+	</constructor-arg>
+</bean>
 
     <!-- The filter is waiting for connections on URL suffixed with filterSuffix and presents SP metadata there -->
     <bean id="metadataDisplayFilter" class="org.springframework.security.saml.metadata.MetadataDisplayFilter"/>
